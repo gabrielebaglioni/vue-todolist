@@ -1,9 +1,9 @@
 const app = new Vue({
-    el: "app",
+    el: "#app",
     data: {
-        toDo: [{
+        todos: [{
                 text: "fare la spesa",
-                isDone: false
+                isDone: true
             },
             {
                 text: "fare uscire il cane",
@@ -17,9 +17,25 @@ const app = new Vue({
                 text: "fare il pieno",
                 isDone: false
             },
-        ]
+        ],
+        newTodo: {
+            text: " ",
+            isDone: false,
+        },
     },
     methods: {
+        addToDo() {
+            if (this.newTodo !== " ") {
+                this.todos.push(this.newTodo);
+                this.newTodo = "";
+            }
+        },
+        removeToDo(index) {
+            this.todos.splice(index, 1)
+        },
+        doneToDo(index) {
+            this.todos[index].isDone = !this.todos[index].isDone
+        }
 
     },
 });

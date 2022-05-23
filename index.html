@@ -8,12 +8,28 @@
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
     <title>Document</title>
 </head>
 
 <body>
     <div id="app" class="container">
-
+        <div class="logo">
+            <img src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABbB3NTw6bUtZ0kySFp9qsEZAmKTd61m5psZcqQXFcGAa733aIKy-Ep2LsPV0LOu4Uej5H6G9ttPUoKrRu2FBGht01SoKgUfAg8w0vdJIsPRp.png?r=680" alt="">
+        </div>
+        <div class="new-todo">
+            <form @submit.prevent="addToDo()">
+                <input type="text" placeholder="New Todo" v-model="newTodo.text" required>
+                <button type="submit">add</button>
+            </form>
+        </div>
+        <div class="todo-container">
+            <ul v-if="todos.length > 0">
+                <li class="todo" v-for="(todo, index) in todos"><span :class="{ 'done': todo.isDone}">{{todo.text}}</span><span><i @click="doneToDo(index)" class="fa-solid fa-check"></i><i @click="removeToDo(index)" class="fa-solid fa-xmark"></i></span></li>
+            </ul>
+            <h2 v-else>Non sono presenti todo</h2>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
